@@ -1,2 +1,3 @@
 name: 孙士闯的个人博客
 markdown: kramdown
+permalink: /blog/:year/:month/:day/:title
