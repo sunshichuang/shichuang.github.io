@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>klevan blogs</title>
+    <title>javabytecode | klevan blogs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="klevan blogs">
-<meta property="og:url" content="http://yoursite.com/index.html">
+    <meta name="description" content="作为一个Java开发，每天编写的Java代码都是成百上千行，略去枯燥的业务代码不提，追寻代码从编译成class文件开始，虚拟机如何加载、解析这些代码的过程，一定要比单纯写业务代码有意思的多，最起码，要比遇到时间转化，去谷歌一个日期转化函数代码，粘贴了事，来的有意义多啊。哈哈哈~~ 一、就从class文件开始吧我们日常开发的过程大致是这样的，我要提供个某某功能的服务，所以，我们开始巴拉巴拉、、 12">
+<meta name="keywords" content="字节码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javabytecode">
+<meta property="og:url" content="http://yoursite.com/javabytecode/index.html">
 <meta property="og:site_name" content="klevan blogs">
+<meta property="og:description" content="作为一个Java开发，每天编写的Java代码都是成百上千行，略去枯燥的业务代码不提，追寻代码从编译成class文件开始，虚拟机如何加载、解析这些代码的过程，一定要比单纯写业务代码有意思的多，最起码，要比遇到时间转化，去谷歌一个日期转化函数代码，粘贴了事，来的有意义多啊。哈哈哈~~ 一、就从class文件开始吧我们日常开发的过程大致是这样的，我要提供个某某功能的服务，所以，我们开始巴拉巴拉、、 12">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/javabytecode.png">
+<meta property="og:updated_time" content="2017-10-25T09:47:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="klevan blogs">
+<meta name="twitter:title" content="javabytecode">
+<meta name="twitter:description" content="作为一个Java开发，每天编写的Java代码都是成百上千行，略去枯燥的业务代码不提，追寻代码从编译成class文件开始，虚拟机如何加载、解析这些代码的过程，一定要比单纯写业务代码有意思的多，最起码，要比遇到时间转化，去谷歌一个日期转化函数代码，粘贴了事，来的有意义多啊。哈哈哈~~ 一、就从class文件开始吧我们日常开发的过程大致是这样的，我要提供个某某功能的服务，所以，我们开始巴拉巴拉、、 12">
+<meta name="twitter:image" content="http://yoursite.com/images/javabytecode.png">
     
 
     
@@ -206,16 +213,15 @@
 </aside>
 
             
-            <section id="main">
-    <article id="post-javabytecode" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-javabytecode" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
             <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="article-title" href="/javabytecode/">javabytecode</a>
+        <h1 class="article-title" itemprop="name">
+            javabytecode
         </h1>
     
 
@@ -249,12 +255,107 @@
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><p>作为一个Java开发，每天编写的Java代码都是成百上千行，略去枯燥的业务代码不提，追寻代码从编译成class文件开始，虚拟机如何加载、解析这些代码的过程，一定要比单纯写业务代码有意思的多，最起码，要比遇到时间转化，去谷歌一个日期转化函数代码，粘贴了事，来的有意义多啊。哈哈哈~~</p>
+            
+            <p>作为一个Java开发，每天编写的Java代码都是成百上千行，略去枯燥的业务代码不提，追寻代码从编译成class文件开始，虚拟机如何加载、解析这些代码的过程，一定要比单纯写业务代码有意思的多，最起码，要比遇到时间转化，去谷歌一个日期转化函数代码，粘贴了事，来的有意义多啊。哈哈哈~~</p>
 <h1 id="一、就从class文件开始吧"><a href="#一、就从class文件开始吧" class="headerlink" title="一、就从class文件开始吧"></a>一、就从class文件开始吧</h1><p>我们日常开发的过程大致是这样的，我要提供个某某功能的服务，所以，我们开始巴拉巴拉、、</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AaBaServiceImpl</span> <span class="keyword">implements</span> <span class="title">AaBaService</span> </span>&#123;</div><div class="line">   <span class="comment">//巴拉巴拉一堆代码：服务依赖、变量定义、方法定义、常量、日志 等等等</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-            <p class="article-more-link">
-                <a href="/javabytecode/#more">查看更多</a>
-            </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AaBaServiceImpl</span> <span class="keyword">implements</span> <span class="title">AaBaService</span> </span>&#123;</div><div class="line">   <span class="comment">//巴拉巴拉一堆代码：服务依赖、变量定义、方法定义、常量、日志 等等等</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>是不是机械的很，熟练的不行啊，快飞起来了。瞬间觉得自己狂拽掉咋天。BUT FUCK为啥我非要写成这样？我可是程序员啊 ，创造力无限的说，咋就不能一朝顿悟，一掌辟出个黯然销魂掌？答曰：那必须不能啊，因为神雕侠侣特么它不是你写的啊。类比可知：Java特么也不是你发明的，人家的规范早就定义好了，在这个基础规范里面，文件结构那只能这么搞，为了一个崇高的“梦想”：师夷长技以制夷。万一哪天牛逼了，一不小心独创了个语言呢？人家杨过那也是厚积薄发，内力深厚，阅经沧桑，不然还销魂啥啊，没等销魂，就被蛤蟆功撑死了。所以，先积一下。来看看这个<a href="http://docs.oracle.com/javase/specs/jvms/se7/html/index.html" target="_blank" rel="external">虚拟机规范</a> ，章节翻到第四节：Chapter 4. The class File Format，类文件格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">ClassFile &#123;</div><div class="line">    u4             magic;</div><div class="line">    u2             minor_version;</div><div class="line">    u2             major_version;</div><div class="line">    u2             constant_pool_count;</div><div class="line">    cp_info        constant_pool[constant_pool_count-1];</div><div class="line">    u2             access_flags;</div><div class="line">    u2             this_class;</div><div class="line">    u2             super_class;</div><div class="line">    u2             interfaces_count;</div><div class="line">    u2             interfaces[interfaces_count];</div><div class="line">    u2             fields_count;</div><div class="line">    field_info     fields[fields_count];</div><div class="line">    u2             methods_count;</div><div class="line">    method_info    methods[methods_count];</div><div class="line">    u2             attributes_count;</div><div class="line">    attribute_info attributes[attributes_count];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里u4、u2表示的4个字节，2个字节的意思。但是这么看起来还是很抽象，不明觉厉。那先画个图给他串一下，顺便，把这几个英文的意思也标记一下：</p>
+<p><img src="/images/javabytecode.png" alt=""><br>对照着图，分别简单聊一下这些class文件的结构内容：</p>
+<ul>
+<li><p>magic：魔数。值是十六进制：CAFEBABE。作用是标记文件的身份，也就是标记该文件是否可以被虚拟机接受。</p>
+</li>
+<li><p>minor_version: 次版本号。</p>
+</li>
+<li>major_version：主版本号。</li>
+</ul>
+<p>这两哥们决定了类文件版本格式。简单的说，就是决定类文件可以被哪个版本的虚拟机执行。假设minor_version的值是M，major_version的值是m，那么这个类的版本号就是M.m。</p>
+<ul>
+<li><p>constant_pool_count：常量池统计数。表示常量池的大小。</p>
+</li>
+<li><p>constant_pool：常量池。大小是constant_pool_count-1。常量池的主要内容是字面量和符号引用。</p>
+</li>
+<li><p>access_flags：访问标志。表示类或者接口的访问信息。比如是Class还是Interface，定义域是不是public，Class是不是抽象的等。</p>
+</li>
+<li><p>this_class: 类索引。标记这个类的全量名，指向常量值的字面量。</p>
+</li>
+<li>super_class: 父类索引。标记类父类的全量名。</li>
+<li>interfaces_count：接口计数器。表示接口的数量。</li>
+<li>interfaces：具体的接口信息。</li>
+<li>fields_count：字段信息计数器，用来描述接口或者类中的声明的变量。</li>
+<li>fields: 字段的具体信息。</li>
+<li>methods_count：方法表计数器。</li>
+<li>methods：方法表具体信息。</li>
+<li>attributes_count：属性表计数器。</li>
+<li>attributes：属性表具体信息。</li>
+</ul>
+<p>Test：</p>
+<p>Compiled from “JavaCodeTest.java”<br>public class JavaCodeTest {<br>  public JavaCodeTest();<br>    Code:<br>       0: aload_0<br>       1: invokespecial #1                  // Method java/lang/Object.”<init>“:()V<br>       4: aload_0<br>       5: ldc           #2                  // String java code test<br>       7: putfield      #3                  // Field test:Ljava/lang/String;<br>      10: return</init></p>
+<p>  public java.lang.String getTest();<br>    Code:<br>       0: ldc           #4                  // String ceshi<br>       2: areturn<br>}</p>
+<p>2.查看更详细的信息，输出常量表信息：javap -verbose + 类名称</p>
+<p>Classfile /Users/sunshichuang/Desktop/personal_file/workTest/workTest/Java_Code/src/JavaCodeTest.class<br>  Last modified 2017-6-12; size 359 bytes<br>  MD5 checksum dd09242d3d1869220c01d5976e503de2<br>  Compiled from “JavaCodeTest.java”<br>public class JavaCodeTest<br>  minor version: 0<br>  major version: 52<br>  flags: ACC_PUBLIC, ACC_SUPER<br>Constant pool:</p>
+<p>   #1 = Methodref          #6.#17         // java/lang/Object.”<init>“:()V</init></p>
+<p>   #2 = String             #18            // java code test</p>
+<p>   #3 = Fieldref           #5.#19         // JavaCodeTest.test:Ljava/lang/String;</p>
+<p>   #4 = String             #20            // ceshi</p>
+<p>   #5 = Class              #21            // JavaCodeTest</p>
+<p>   #6 = Class              #22            // java/lang/Object</p>
+<p>   #7 = Utf8               test</p>
+<p>   #8 = Utf8               Ljava/lang/String;</p>
+<p>   #9 = Utf8               <init></init></p>
+<p>  #10 = Utf8               ()V</p>
+<p>  #11 = Utf8               Code</p>
+<p>  #12 = Utf8               LineNumberTable</p>
+<p>  #13 = Utf8               getTest</p>
+<p>  #14 = Utf8               ()Ljava/lang/String;</p>
+<p>  #15 = Utf8               SourceFile</p>
+<p>  #16 = Utf8               JavaCodeTest.java</p>
+<p>  #17 = NameAndType        #9:#10         // “<init>“:()V</init></p>
+<p>  #18 = Utf8               java code test</p>
+<p>  #19 = NameAndType        #7:#8          // test:Ljava/lang/String;</p>
+<p>  #20 = Utf8               ceshi</p>
+<p>  #21 = Utf8               JavaCodeTest</p>
+<p>  #22 = Utf8               java/lang/Object<br>{<br>  public JavaCodeTest();<br>    descriptor: ()V<br>    flags: ACC_PUBLIC<br>    Code:<br>      stack=2, locals=1, args_size=1<br>         0: aload_0<br>         1: invokespecial #1                  // Method java/lang/Object.”<init>“:()V<br>         4: aload_0<br>         5: ldc           #2                  // String java code test<br>         7: putfield      #3                  // Field test:Ljava/lang/String;<br>        10: return<br>      LineNumberTable:<br>        line 4: 0<br>        line 5: 4</init></p>
+<p>  public java.lang.String getTest();<br>    descriptor: ()Ljava/lang/String;<br>    flags: ACC_PUBLIC<br>    Code:<br>      stack=1, locals=1, args_size=1<br>         0: ldc           #4                  // String ceshi<br>         2: areturn<br>      LineNumberTable:<br>        line 8: 0<br>}<br>SourceFile: “JavaCodeTest.java”</p>
+<p>3.命令行查看十六进制的class文件：<br>  1）首先以二进制方式编辑这个文件：vi -b datafile<br>   2）使用xxd转换为16进制：:%!xxd<br>  3）转换16进制回来vi：:%!xxd -r</p>
+<p>4.十六进制内容：</p>
+<p>cafebabe 0000 0034   </p>
+<p>0017 :常量池大小为23，表示常量池大小为22，0空出来特殊场景下表示：不引用任何一个常量池项目</p>
+<p>第一个常量：0a:值是10，查表，是CONSTANT_Methodref_info,表示表示类中方法的符号索引:结构是u1tag，u2index,u2index</p>
+<pre><code>0006: 6,指向CONSTANT_Class_info,即常量池的第六个常量，
+0011: 17，常量池的第17个常量，
+</code></pre><p>二:08:8,查表，字符串类型的字面量，CONSTANT_String_info</p>
+<p>   0012 ：18，指向字符串字面量的引用</p>
+<p>三：09 ：9 ，是字段的符号引用，CONSTANT_Fieldref_info</p>
+<pre><code>0005
+0013
+</code></pre><p>四：08<br>    0014</p>
+<p>五：07，CONSTANT_Class_info</p>
+<p>   0015</p>
+<p>六：07<br>    0016<br>七：01 ：CONSTANT_Utf8_info<br>   0004 ：长度是4的字符串,查ASCII码表，分别为字符串：<br>   74 : t<br>   65 : e<br>   73 : s<br>   74 : t</p>
+<p>八：01 ：CONSTANT_Utf8_info<br>   0012 ：长度为18字节的字符串<br>   4c6a6176612f6c616e672f537472696e673b ：Ljava/lang/String;</p>
+<p>九：01<br>    0006 ：长度为6字节的字符串<br>    3c696e69743e ： <init><br>十：01<br>    0003：长度为3字节的字符串<br>    282956： ()V</init></p>
+<p>十一：01<br>    0004 ：长度为4字节的字符串<br>    436f6465 ：Code</p>
+<p>十二：01<br>    000f：长度为15字节的字符串<br>    4c696e654e756d6265725461626c65：LineNumberTable</p>
+<p>十三：01<br>    0007<br>    67657454657374<br>十四：01<br>    0014 ：20<br>    28294c6a6176612f6c616e672f537472696e673b ：()Ljava/lang/String;</p>
+<p>十五：01<br>    000a<br>    536f7572636546696c65<br>十六：01<br>    0011 ：17<br>    4a617661436f6465546573742e6a617661</p>
+<p>十七：0c ：12 ，CONSTANT_Class_info，字段或者方法的部分符号引用<br>    0009：指向字段或者方法名称常量项的引用，指向第九个常量，也就是<init><br>    000a：指向字段或者方法描述符常量项的引用，即()V<br>十八：01<br>    000e：14<br>    6a61766120636f64652074657374 ：java code test</init></p>
+<p>十九：0c ：12，，CONSTANT_Class_info，字段或者方法的部分符号引用<br>    0007：7，指向第七个常量：test<br>    0008：8，指向第八个常量<br>二十：01：<br>    0005：5个常量<br>    6365736869</p>
+<p>二十一：01<br>    000c：12，<br>    4a617661436f646554657374<br>二十二：01<br>    0010 ：16个<br>    6a6176612f6c616e672f4f626a656374</p>
+<p>—–常量池结束—–<br>紧跟着的两个字节：<br>0021 ：代表访问标志（access_flags）,用于识别类或者接口层次的访问信息；</p>
+<p>0005 ：类索引，指向常量池变量5：JavaCodeTest</p>
+<p>0006：父类索引，指向常量池变量：java/lang/Object，<br>0000：接口索引为0，没有实现接口</p>
+<p>———字段表信息开始：用于描述接口或类中申明的变量——–<br>0001:容量计数器，fields_count,1，表33333333333333333333333333333示只有一个字段表数据<br>0002：字段表的access_flags,表示字段是private<br>0007:name_index,7,指向常量池的第七项常量：test，<br>0008：描述字段，descriptor_index:8,指向常量池的第八项常量：Ljava/lang/String;</p>
+<pre><code>得出：private String test;
+</code></pre><p>0000:attributes_count=0,表示没有额外描述的信息；</p>
+<p>———字段信息结束——–</p>
+<p>———方法表集合开始———-<br>0002：容量计数器：表示有两个方法</p>
+<p>0001：access_flags:1,ACC_PUBLIC,表示public方法<br>0009： 指向常量池，方法名：<init><br>000a:方法描述符索引：10，()V，表示特殊类型void，<br>0001：attributes_count,属性计数器1，表示方法含有一项属性；<br>   ——属性表集合开始—<br>000b：attribute_name_index,属性的名称索引，11：Code，表示此属性是方法的字节码描述；<br>00000027：attribute_length，39<br>0002:max_stack,操作数栈的最大深度为2，<br>0001：max_locals，局部变量表所需的存储空间为1；<br>0000000b：code_length:字节码指令长度：11<br>2a:对应指令：aload_0，意思是把第一个引用类型本地变量推送到栈顶，也就是把String test 推送到栈顶；<br>b7：对应指令：invokespecial,调用本对象的实例构造器方法、private方法、父类方法，后面跟一个u2类型的参数<br>0001：参数：表示调用的是哪一个方法，这里指：java/lang/Object.”<init>“:()V<br>2a ：aload_0<br>12 ：ldc:把int/float/String类型常量值从常量池中推送到栈顶,后面跟一个参数表示推送的常量值在常量池中的位置<br>02 ：ldc的参数，指向常量池中的第二个位置；<br>b5 ：putfiled:为指定类的实例域赋值，<br>0003 ：参数，把ldc推送的常量赋值给putfiled指向的3的变量；<br>b1 ：return:从当前方法返回void；</init></init></p>
+<p>0000 ：exception_table_length<br>0001 :attributes_count：<br>000c ：attribute_name_index:12,指向常量池中的LineNumberTable<br>0000000a ：</p>
+<p>0002<br>00000004000400050001000d000e0001000b0000001b0001000100000003<br>1204b000000001000c000000060001000000080001000f000000020010</p>
+
         
         </div>
         <footer class="article-footer">
@@ -336,397 +437,24 @@
         </footer>
     </div>
     
-</article>
-
-
-
-    <article id="post-testResource" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
         
-        
-            <header class="article-header">
-                
+<nav id="article-nav">
     
-        <h1 itemprop="name">
-            <a class="article-title" href="/testResource/">testResource</a>
-        </h1>
     
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/testResource/">
-            <time datetime="2017-10-25T02:49:45.000Z" itemprop="datePublished">2017-10-25</time>
+        <a href="/testResource/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">testResource</div>
         </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/虎式坦克/">虎式坦克</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/分类3/">分类3</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <img src="/testResource/logo.png" alt="logo.png" title="">
-<p>啊飒飒大所大所大所多</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/testResource/" data-id="cj96tqvxe00059zeyion9mh6j" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
     
+</nav>
 
-        </footer>
-    </div>
+
     
 </article>
 
 
-
-    <article id="post-ceshi" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
     
-        <h1 itemprop="name">
-            <a class="article-title" href="/ceshi/">ceshi</a>
-        </h1>
     
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/ceshi/">
-            <time datetime="2017-10-24T16:57:20.000Z" itemprop="datePublished">2017-10-25</time>
-        </a>
-    </div>
-
-
-                        
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/分类1/">分类1</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>我是测试1</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/ceshi/" data-id="cj96tqvwq00009zey3d3jfz6x" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/hello-world/">Hello World</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/hello-world/">
-            <time datetime="2017-09-30T16:57:20.000Z" itemprop="datePublished">2017-10-01</time>
-        </a>
-    </div>
-
-
-                        
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/分类123/">分类123</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/hello-world/" data-id="cj96tqvwz00029zeytxw507fc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
 
 </section>
             
