@@ -3,20 +3,15 @@
 <head>
     <meta charset="utf-8">
     
-    <title>ceshi | klevan blogs</title>
+    <title>分类: Java | klevan blogs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="我是测试1">
-<meta name="keywords" content="分类1">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ceshi">
-<meta property="og:url" content="http://yoursite.com/ceshi/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="klevan blogs">
+<meta property="og:url" content="http://yoursite.com/categories/Java/index.html">
 <meta property="og:site_name" content="klevan blogs">
-<meta property="og:description" content="我是测试1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-25T02:50:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ceshi">
-<meta name="twitter:description" content="我是测试1">
+<meta name="twitter:title" content="klevan blogs">
     
 
     
@@ -159,11 +154,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                3
+                1
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                3
+                1
                 <span>标签</span>
             </div>
         </div>
@@ -211,155 +206,50 @@
 </aside>
 
             
-            <section id="main"><article id="post-ceshi" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
+            <section id="main">
+<div class="timeline timeline-wrap">
+    <div class="timeline-row timeline-row-major">
+        <span class="node"><i class="fa fa-folder"></i></span>
+        <h1 class="title">Java</h1>
+    </div>
+    
+        <div class="timeline-row">
+            <span class="node"></span>
+            <div class="content">
                 
     
-        <h1 class="article-title" itemprop="name">
-            ceshi
+        <h1 itemprop="name">
+            <a class="timeline-article-title" href="/javabytecode/">Java类文件结构解析（一）</a>
         </h1>
     
 
-                
-                    <div class="article-meta">
-                        
+                <div class="article-meta">
+                    
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/ceshi/">
-            <time datetime="2017-10-24T16:57:20.000Z" itemprop="datePublished">2017-10-25</time>
+        <a href="/javabytecode/">
+            <time datetime="2017-10-25T09:01:51.000Z" itemprop="datePublished">2017-10-25</time>
         </a>
     </div>
 
 
-                        
-                        
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Java/">Java</a>
+    </div>
+
+                    
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/分类1/">分类1</a>
+        <a class="tag-link" href="/tags/字节码/">字节码</a>
     </div>
 
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>我是测试1</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/ceshi/" data-id="cj96hhlde0000ldeyfca1s0z9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/testResource/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    testResource
-                
+                </div>
             </div>
-        </a>
+        </div>
     
-    
-        <a href="/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">Hello World</div>
-        </a>
-    
-</nav>
-
-
-    
-</article>
-
-
-    
-    
-
+</div>
 </section>
             
                 
@@ -374,57 +264,19 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/testResource/" class="thumbnail">
+                            <a href="/javabytecode/" class="thumbnail">
     
     
-        <span style="background-image:url(logo.png)" alt="testResource" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/虎式坦克/">虎式坦克</a></p>
-                            <p class="item-title"><a href="/testResource/" class="title">testResource</a></p>
-                            <p class="item-date"><time datetime="2017-10-25T02:49:45.000Z" itemprop="datePublished">2017-10-25</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/ceshi/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(/images/javalogo.png)" alt="Java类文件结构解析（一）" class="thumbnail-image"></span>
     
 </a>
 
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/ceshi/" class="title">ceshi</a></p>
-                            <p class="item-date"><time datetime="2017-10-24T16:57:20.000Z" itemprop="datePublished">2017-10-25</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/hello-world/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/hello-world/" class="title">Hello World</a></p>
-                            <p class="item-date"><time datetime="2017-09-30T16:57:20.000Z" itemprop="datePublished">2017-10-01</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/javabytecode/" class="title">Java类文件结构解析（一）</a></p>
+                            <p class="item-date"><time datetime="2017-10-25T09:01:51.000Z" itemprop="datePublished">2017-10-25</time></p>
                         </div>
                     </li>
                 
@@ -437,7 +289,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/虎式坦克/">虎式坦克</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -446,7 +298,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">3</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -455,7 +307,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/分类1/">分类1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分类123/">分类123</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分类3/">分类3</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/字节码/">字节码</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -464,7 +316,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/分类1/" style="font-size: 10px;">分类1</a> <a href="/tags/分类123/" style="font-size: 10px;">分类123</a> <a href="/tags/分类3/" style="font-size: 10px;">分类3</a>
+            <a href="/tags/字节码/" style="font-size: 10px;">字节码</a>
         </div>
     </div>
 

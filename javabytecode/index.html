@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Java类文件结构解析（一） | klevan blogs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="作为一个Java开发，每天编写的Java代码都是成百上千行，略去枯燥的业务代码不提，追寻代码从编译成class文件开始，虚拟机如何加载、解析这些代码的过程，一定要比单纯写业务代码有意思的多。 一、class文件的结构我们日常开发的过程大致是这样的，我要提供个某某功能的服务，所以，我们开始巴拉巴拉、、 123public class AaBaServiceImpl implements AaBaSe">
+<meta name="keywords" content="字节码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java类文件结构解析（一）">
+<meta property="og:url" content="http://yoursite.com/javabytecode/index.html">
+<meta property="og:site_name" content="klevan blogs">
+<meta property="og:description" content="作为一个Java开发，每天编写的Java代码都是成百上千行，略去枯燥的业务代码不提，追寻代码从编译成class文件开始，虚拟机如何加载、解析这些代码的过程，一定要比单纯写业务代码有意思的多。 一、class文件的结构我们日常开发的过程大致是这样的，我要提供个某某功能的服务，所以，我们开始巴拉巴拉、、 123public class AaBaServiceImpl implements AaBaSe">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/javalogo.png">
+<meta property="og:updated_time" content="2017-10-26T11:44:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java类文件结构解析（一）">
+<meta name="twitter:description" content="作为一个Java开发，每天编写的Java代码都是成百上千行，略去枯燥的业务代码不提，追寻代码从编译成class文件开始，虚拟机如何加载、解析这些代码的过程，一定要比单纯写业务代码有意思的多。 一、class文件的结构我们日常开发的过程大致是这样的，我要提供个某某功能的服务，所以，我们开始巴拉巴拉、、 123public class AaBaServiceImpl implements AaBaSe">
+<meta name="twitter:image" content="http://yoursite.com/images/javalogo.png">
+    
+
+    
+        <link rel="alternate" href="/" title="klevan blogs" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">klevan blogs</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">klevan</h2>
+            <h3 id="title">A Developer &amp; Designer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>hangzhou, China</span>
+            <a id="follow" target="_blank" href="https://github.com/klevantrain/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                1
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                1
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="dribbble" class=tooltip>
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-javabytecode" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Java类文件结构解析（一）
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/javabytecode/">
+            <time datetime="2017-10-25T09:01:51.000Z" itemprop="datePublished">2017-10-25</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Java/">Java</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/字节码/">字节码</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><img src="/images/javalogo.png" alt=""><br>作为一个Java开发，每天编写的Java代码都是成百上千行，略去枯燥的业务代码不提，追寻代码从编译成class文件开始，虚拟机如何加载、解析这些代码的过程，一定要比单纯写业务代码有意思的多。</p>
+<h1 id="一、class文件的结构"><a href="#一、class文件的结构" class="headerlink" title="一、class文件的结构"></a>一、class文件的结构</h1><p>我们日常开发的过程大致是这样的，我要提供个某某功能的服务，所以，我们开始巴拉巴拉、、</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AaBaServiceImpl</span> <span class="keyword">implements</span> <span class="title">AaBaService</span> </span>&#123;</div><div class="line">   <span class="comment">//巴拉巴拉一堆代码：服务依赖、变量定义、方法定义、常量、日志 等等等</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>是不是机械的很，熟练的不行啊，快飞起来了。瞬间觉得自己狂拽掉咋天。BUT FUCK为啥我非要写成这样？我可是程序员啊 ，创造力无限的说，咋就不能一朝顿悟，一掌辟出个黯然销魂掌？答曰：那必须不能啊，因为神雕侠侣特么它不是你写的啊。类比可知：Java特么也不是你发明的，人家的规范早就定义好了，在这个基础规范里面，文件结构那只能这么搞，为了一个崇高的“梦想”：师夷长技以制夷。万一哪天牛逼了，一不小心独创了个语言呢？人家杨过那也是厚积薄发，内力深厚，阅经沧桑，不然还销魂啥啊，没等销魂，就被蛤蟆功撑死了。所以，先积一下。来看看这个<a href="http://docs.oracle.com/javase/specs/jvms/se7/html/index.html" target="_blank" rel="external">虚拟机规范</a> ，章节翻到第四节：Chapter 4. The class File Format，类文件格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">ClassFile &#123;</div><div class="line">    u4             magic;</div><div class="line">    u2             minor_version;</div><div class="line">    u2             major_version;</div><div class="line">    u2             constant_pool_count;</div><div class="line">    cp_info        constant_pool[constant_pool_count-1];</div><div class="line">    u2             access_flags;</div><div class="line">    u2             this_class;</div><div class="line">    u2             super_class;</div><div class="line">    u2             interfaces_count;</div><div class="line">    u2             interfaces[interfaces_count];</div><div class="line">    u2             fields_count;</div><div class="line">    field_info     fields[fields_count];</div><div class="line">    u2             methods_count;</div><div class="line">    method_info    methods[methods_count];</div><div class="line">    u2             attributes_count;</div><div class="line">    attribute_info attributes[attributes_count];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里u4、u2表示的4个字节，2个字节的意思。但是这么看起来还是很抽象，不明觉厉。那先画个图给他串一下，顺便，把这几个英文的意思也标记一下：</p>
+<p><img src="/images/javabytecode.png" alt=""><br>对照着图，分别简单聊一下这些class文件的结构内容：</p>
+<ul>
+<li><p>magic：魔数。值是十六进制：CAFEBABE。作用是标记文件的身份，也就是标记该文件是否可以被虚拟机接受。</p>
+</li>
+<li><p>minor_version: 次版本号。</p>
+</li>
+<li>major_version：主版本号。</li>
+</ul>
+<p>这两哥们决定了类文件版本格式。简单的说，就是决定类文件可以被哪个版本的虚拟机执行。假设minor_version的值是M，major_version的值是m，那么这个类的版本号就是M.m。</p>
+<ul>
+<li><p>constant_pool_count：常量池统计数。表示常量池的大小。</p>
+</li>
+<li><p>constant_pool：常量池。大小是constant_pool_count-1。常量池的主要内容是字面量和符号引用。</p>
+</li>
+<li><p>access_flags：访问标志。表示类或者接口的访问信息。比如是Class还是Interface，定义域是不是public，Class是不是抽象的等。</p>
+</li>
+<li><p>this_class: 类索引。标记这个类的全量名，指向常量值的字面量。</p>
+</li>
+<li>super_class: 父类索引。标记类父类的全量名。</li>
+<li>interfaces_count：接口计数器。表示接口的数量。</li>
+<li>interfaces：具体的接口信息。</li>
+<li>fields_count：字段信息计数器，用来描述接口或者类中的声明的变量。</li>
+<li>fields: 字段的具体信息。</li>
+<li>methods_count：方法表计数器。</li>
+<li>methods：方法表具体信息。</li>
+<li>attributes_count：属性表计数器。</li>
+<li>attributes：属性表具体信息。</li>
+</ul>
+<h1 id="二、具体代码实例的对比"><a href="#二、具体代码实例的对比" class="headerlink" title="二、具体代码实例的对比"></a>二、具体代码实例的对比</h1><p>拿到类文件的结构以后，我们写一个简单的java代码做个对比，源文件代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaCodeTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String test = <span class="string">"java code test"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTest</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"ceshi"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>有了源文件以后，需要把源文件编译成Java字节码，以供我们学习比对，首先执行javac JavaCodeTest.java，编译成class文件，之后需要查看编译后的class文件以及其二进制的内容，这里简单介绍一下具体方法：</p>
+<h3 id="1-命令行方式查看class文件的内容："><a href="#1-命令行方式查看class文件的内容：" class="headerlink" title="1.命令行方式查看class文件的内容："></a>1.命令行方式查看class文件的内容：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">javap -verbose JavaCodeTest</div></pre></td></tr></table></figure>
+<p>执行后的结果会带常量池的具体信息，如果不想查看常量池，执行javap -c filenName即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">Compiled from <span class="string">"JavaCodeTest.java"</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaCodeTest</span></span></div><div class="line">  minor version: 0</div><div class="line">  major version: <span class="number">52</span></div><div class="line">  flags: ACC_PUBLIC, ACC_SUPER</div><div class="line">Constant pool:</div><div class="line">   #1 = Methodref          #6.#17         // java/lang/Object."&lt;init&gt;":()V</div><div class="line">   #2 = String             #18            // java code test</div><div class="line">   #3 = Fieldref           #5.#19         // JavaCodeTest.test:Ljava/lang/String;</div><div class="line">   #4 = String             #20            // ceshi</div><div class="line">   #5 = Class              #21            // JavaCodeTest</div><div class="line">   #6 = Class              #22            // java/lang/Object</div><div class="line">   #7 = Utf8               test</div><div class="line">   #8 = Utf8               Ljava/lang/String;</div><div class="line">   #9 = Utf8               &lt;init&gt;</div><div class="line">  #10 = Utf8               ()V</div><div class="line">  #11 = Utf8               Code</div><div class="line">  #12 = Utf8               LineNumberTable</div><div class="line">  #13 = Utf8               getTest</div><div class="line">  #14 = Utf8               ()Ljava/lang/String;</div><div class="line">  #15 = Utf8               SourceFile</div><div class="line">  #16 = Utf8               JavaCodeTest.java</div><div class="line">  #17 = NameAndType        #9:#10         // "&lt;init&gt;":()V</div><div class="line">  #18 = Utf8               java code test</div><div class="line">  #19 = NameAndType        #7:#8          // test:Ljava/lang/String;</div><div class="line">  #20 = Utf8               ceshi</div><div class="line">  #21 = Utf8               JavaCodeTest</div><div class="line">  #22 = Utf8               java/lang/Object</div><div class="line">&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">JavaCodeTest</span><span class="params">()</span></span>;</div><div class="line">    descriptor: ()V</div><div class="line">    flags: ACC_PUBLIC</div><div class="line">    Code:</div><div class="line">      stack=<span class="number">2</span>, locals=<span class="number">1</span>, args_size=<span class="number">1</span></div><div class="line">         <span class="number">0</span>: aload_0</div><div class="line">         1: invokespecial #1                  // Method java/lang/Object."&lt;init&gt;":()V</div><div class="line">         <span class="number">4</span>: aload_0</div><div class="line">         5: ldc           #2                  // String java code test</div><div class="line">         7: putfield      #3                  // Field test:Ljava/lang/String;</div><div class="line">        <span class="number">10</span>: <span class="keyword">return</span></div><div class="line">      LineNumberTable:</div><div class="line">        line <span class="number">4</span>: <span class="number">0</span></div><div class="line">        line <span class="number">5</span>: <span class="number">4</span></div><div class="line"></div><div class="line">  <span class="keyword">public</span> java.lang.<span class="function">String <span class="title">getTest</span><span class="params">()</span></span>;</div><div class="line">    descriptor: ()Ljava/lang/String;</div><div class="line">    flags: ACC_PUBLIC</div><div class="line">    Code:</div><div class="line">      stack=<span class="number">1</span>, locals=<span class="number">1</span>, args_size=<span class="number">1</span></div><div class="line">         0: ldc           #4                  // String ceshi</div><div class="line">         <span class="number">2</span>: areturn</div><div class="line">      LineNumberTable:</div><div class="line">        line <span class="number">8</span>: <span class="number">0</span></div><div class="line">&#125;</div><div class="line">SourceFile: <span class="string">"JavaCodeTest.java"</span></div></pre></td></tr></table></figure>
+<h3 id="2-命令行查看十六进制的class文件内容"><a href="#2-命令行查看十六进制的class文件内容" class="headerlink" title="2.命令行查看十六进制的class文件内容"></a>2.命令行查看十六进制的class文件内容</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>）首先以二进制方式编辑这个文件：vi -b datafile</div><div class="line"><span class="number">2</span>）使用xxd转换为<span class="number">16</span>进制：:%!xxd</div><div class="line"><span class="number">3</span>）转换<span class="number">16</span>进制回来vi：:%!xxd -r</div></pre></td></tr></table></figure>
+<p>执行完命令1跟2后，命令行显示内容如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="number">00000000</span>: cafe babe <span class="number">0000</span> <span class="number">0034</span> <span class="number">0017</span> <span class="number">0</span>a00 <span class="number">0600</span> <span class="number">1108</span>  .......<span class="number">4</span>........</div><div class="line"><span class="number">00000010</span>: <span class="number">0012</span> <span class="number">0900</span> <span class="number">0500</span> <span class="number">1308</span> <span class="number">0014</span> <span class="number">0700</span> <span class="number">1507</span> <span class="number">0016</span>  ................</div><div class="line"><span class="number">00000020</span>: <span class="number">0100</span> <span class="number">0474</span> <span class="number">6573</span> <span class="number">7401</span> <span class="number">0012</span> <span class="number">4</span>c6a <span class="number">6176</span> <span class="number">612f</span>  ...test...Ljava/</div><div class="line"><span class="number">00000030</span>: <span class="number">6</span>c61 <span class="number">6e67</span> <span class="number">2f</span>53 <span class="number">7472</span> <span class="number">696</span>e <span class="number">673</span>b <span class="number">0100</span> <span class="number">063</span>c  lang/String;...&lt;</div><div class="line"><span class="number">00000040</span>: <span class="number">696</span>e <span class="number">6974</span> <span class="number">3e01</span> <span class="number">0003</span> <span class="number">2829</span> <span class="number">5601</span> <span class="number">0004</span> <span class="number">436f</span>  init&gt;...()V...Co</div><div class="line"><span class="number">00000050</span>: <span class="number">6465</span> <span class="number">0100</span> <span class="number">0f</span>4c <span class="number">696</span>e <span class="number">654</span>e <span class="number">756</span>d <span class="number">6265</span> <span class="number">7254</span>  de...LineNumberT</div><div class="line"><span class="number">00000060</span>: <span class="number">6162</span> <span class="number">6</span>c65 <span class="number">0100</span> <span class="number">0767</span> <span class="number">6574</span> <span class="number">5465</span> <span class="number">7374</span> <span class="number">0100</span>  able...getTest..</div><div class="line"><span class="number">00000070</span>: <span class="number">1428</span> <span class="number">294</span>c <span class="number">6</span>a61 <span class="number">7661</span> <span class="number">2f</span>6c <span class="number">616</span>e <span class="number">672f</span> <span class="number">5374</span>  .()Ljava/lang/St</div><div class="line"><span class="number">00000080</span>: <span class="number">7269</span> <span class="number">6e67</span> <span class="number">3</span>b01 <span class="number">000</span>a <span class="number">536f</span> <span class="number">7572</span> <span class="number">6365</span> <span class="number">4669</span>  ring;...SourceFi</div><div class="line"><span class="number">00000090</span>: <span class="number">6</span>c65 <span class="number">0100</span> <span class="number">114</span>a <span class="number">6176</span> <span class="number">6143</span> <span class="number">6f</span>64 <span class="number">6554</span> <span class="number">6573</span>  le...JavaCodeTes</div><div class="line"><span class="number">000000</span>a0: <span class="number">742</span>e <span class="number">6</span>a61 <span class="number">7661</span> <span class="number">0</span>c00 <span class="number">0900</span> <span class="number">0</span>a01 <span class="number">000</span>e <span class="number">6</span>a61  t.java........ja</div><div class="line"><span class="number">000000</span>b0: <span class="number">7661</span> <span class="number">2063</span> <span class="number">6f</span>64 <span class="number">6520</span> <span class="number">7465</span> <span class="number">7374</span> <span class="number">0</span>c00 <span class="number">0700</span>  va code test....</div><div class="line"><span class="number">000000</span>c0: <span class="number">0801</span> <span class="number">0005</span> <span class="number">6365</span> <span class="number">7368</span> <span class="number">6901</span> <span class="number">000</span>c <span class="number">4</span>a61 <span class="number">7661</span>  ....ceshi...Java</div><div class="line"><span class="number">000000</span>d0: <span class="number">436f</span> <span class="number">6465</span> <span class="number">5465</span> <span class="number">7374</span> <span class="number">0100</span> <span class="number">106</span>a <span class="number">6176</span> <span class="number">612f</span>  CodeTest...java/</div><div class="line"><span class="number">000000e0</span>: <span class="number">6</span>c61 <span class="number">6e67</span> <span class="number">2f</span>4f <span class="number">626</span>a <span class="number">6563</span> <span class="number">7400</span> <span class="number">2100</span> <span class="number">0500</span>  lang/Object.!...</div><div class="line"><span class="number">000000f</span>0: <span class="number">0600</span> <span class="number">0000</span> <span class="number">0100</span> <span class="number">0200</span> <span class="number">0700</span> <span class="number">0800</span> <span class="number">0000</span> <span class="number">0200</span>  ................</div><div class="line"><span class="number">00000100</span>: <span class="number">0100</span> <span class="number">0900</span> <span class="number">0</span>a00 <span class="number">0100</span> <span class="number">0b00</span> <span class="number">0000</span> <span class="number">2700</span> <span class="number">0200</span>  ............<span class="string">'...</span></div><div class="line"><span class="string">00000110: 0100 0000 0b2a b700 012a 1202 b500 03b1  .....*...*......</span></div><div class="line"><span class="string">00000120: 0000 0001 000c 0000 000a 0002 0000 0004  ................</span></div><div class="line"><span class="string">00000130: 0004 0005 0001 000d 000e 0001 000b 0000  ................</span></div><div class="line"><span class="string">00000140: 001b 0001 0001 0000 0003 1204 b000 0000  ................</span></div><div class="line"><span class="string">00000150: 0100 0c00 0000 0600 0100 0000 0800 0100  ................</span></div></pre></td></tr></table></figure>
+<p>这个内容看起来不纯粹，进一步把class文件用sublime编辑工具打开，打开后的效果如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">cafe babe <span class="number">0000</span> <span class="number">0034</span> <span class="number">0017</span> <span class="number">0</span>a00 <span class="number">0600</span> <span class="number">1108</span></div><div class="line"><span class="number">0012</span> <span class="number">0900</span> <span class="number">0500</span> <span class="number">1308</span> <span class="number">0014</span> <span class="number">0700</span> <span class="number">1507</span> <span class="number">0016</span></div><div class="line"><span class="number">0100</span> <span class="number">0474</span> <span class="number">6573</span> <span class="number">7401</span> <span class="number">0012</span> <span class="number">4</span>c6a <span class="number">6176</span> <span class="number">612f</span></div><div class="line"><span class="number">6</span>c61 <span class="number">6e67</span> <span class="number">2f</span>53 <span class="number">7472</span> <span class="number">696</span>e <span class="number">673</span>b <span class="number">0100</span> <span class="number">063</span>c</div><div class="line"><span class="number">696</span>e <span class="number">6974</span> <span class="number">3e01</span> <span class="number">0003</span> <span class="number">2829</span> <span class="number">5601</span> <span class="number">0004</span> <span class="number">436f</span></div><div class="line"><span class="number">6465</span> <span class="number">0100</span> <span class="number">0f</span>4c <span class="number">696</span>e <span class="number">654</span>e <span class="number">756</span>d <span class="number">6265</span> <span class="number">7254</span></div><div class="line"><span class="number">6162</span> <span class="number">6</span>c65 <span class="number">0100</span> <span class="number">0767</span> <span class="number">6574</span> <span class="number">5465</span> <span class="number">7374</span> <span class="number">0100</span></div><div class="line"><span class="number">1428</span> <span class="number">294</span>c <span class="number">6</span>a61 <span class="number">7661</span> <span class="number">2f</span>6c <span class="number">616</span>e <span class="number">672f</span> <span class="number">5374</span></div><div class="line"><span class="number">7269</span> <span class="number">6e67</span> <span class="number">3</span>b01 <span class="number">000</span>a <span class="number">536f</span> <span class="number">7572</span> <span class="number">6365</span> <span class="number">4669</span></div><div class="line"><span class="number">6</span>c65 <span class="number">0100</span> <span class="number">114</span>a <span class="number">6176</span> <span class="number">6143</span> <span class="number">6f</span>64 <span class="number">6554</span> <span class="number">6573</span></div><div class="line"><span class="number">742</span>e <span class="number">6</span>a61 <span class="number">7661</span> <span class="number">0</span>c00 <span class="number">0900</span> <span class="number">0</span>a01 <span class="number">000</span>e <span class="number">6</span>a61</div><div class="line"><span class="number">7661</span> <span class="number">2063</span> <span class="number">6f</span>64 <span class="number">6520</span> <span class="number">7465</span> <span class="number">7374</span> <span class="number">0</span>c00 <span class="number">0700</span></div><div class="line"><span class="number">0801</span> <span class="number">0005</span> <span class="number">6365</span> <span class="number">7368</span> <span class="number">6901</span> <span class="number">000</span>c <span class="number">4</span>a61 <span class="number">7661</span></div><div class="line"><span class="number">436f</span> <span class="number">6465</span> <span class="number">5465</span> <span class="number">7374</span> <span class="number">0100</span> <span class="number">106</span>a <span class="number">6176</span> <span class="number">612f</span></div><div class="line"><span class="number">6</span>c61 <span class="number">6e67</span> <span class="number">2f</span>4f <span class="number">626</span>a <span class="number">6563</span> <span class="number">7400</span> <span class="number">2100</span> <span class="number">0500</span></div><div class="line"><span class="number">0600</span> <span class="number">0000</span> <span class="number">0100</span> <span class="number">0200</span> <span class="number">0700</span> <span class="number">0800</span> <span class="number">0000</span> <span class="number">0200</span></div><div class="line"><span class="number">0100</span> <span class="number">0900</span> <span class="number">0</span>a00 <span class="number">0100</span> <span class="number">0b00</span> <span class="number">0000</span> <span class="number">2700</span> <span class="number">0200</span></div><div class="line"><span class="number">0100</span> <span class="number">0000</span> <span class="number">0</span>b2a b700 <span class="number">012</span>a <span class="number">1202</span> b500 <span class="number">03</span>b1</div><div class="line"><span class="number">0000</span> <span class="number">0001</span> <span class="number">000</span>c <span class="number">0000</span> <span class="number">000</span>a <span class="number">0002</span> <span class="number">0000</span> <span class="number">0004</span></div><div class="line"><span class="number">0004</span> <span class="number">0005</span> <span class="number">0001</span> <span class="number">000</span>d <span class="number">000</span>e <span class="number">0001</span> <span class="number">000</span>b <span class="number">0000</span></div><div class="line"><span class="number">001</span>b <span class="number">0001</span> <span class="number">0001</span> <span class="number">0000</span> <span class="number">0003</span> <span class="number">1204</span> b000 <span class="number">0000</span></div><div class="line"><span class="number">0100</span> <span class="number">0</span>c00 <span class="number">0000</span> <span class="number">0600</span> <span class="number">0100</span> <span class="number">0000</span> <span class="number">0800</span> <span class="number">0100</span></div><div class="line"><span class="number">0f</span>00 <span class="number">0000</span> <span class="number">0200</span> <span class="number">10</span></div></pre></td></tr></table></figure>
+<p>这样看起来清爽多了，没有无关的东西了，只剩下纯粹的16进制码了。</p>
+<p>这里多说一句，Java中byte用二进制表示要占用8位，而16进制的每个字符需要用4位二进制位来表示，所以我们就可以把每个byte转换成两个相应的16进制字符，即把byte的高4位和低4位分别转换成相应的16进制字符，并组合起来得到byte转换到16进制字符串的结果。即byte用十六进制表示只占2位。同理，相反的转换也是将两个16进制字符转换成一个byte，原理同上。</p>
+<p>接下来会讲一下对照着这些十六进制码如何查看class字节码的具体内容~~~</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/javabytecode/" data-id="cj98eoi6o0000wteydmujseqj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+
+    
+</article>
+
+
+    
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/javabytecode/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/javalogo.png)" alt="Java类文件结构解析（一）" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/javabytecode/" class="title">Java类文件结构解析（一）</a></p>
+                            <p class="item-date"><time datetime="2017-10-25T09:01:51.000Z" itemprop="datePublished">2017-10-25</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/字节码/">字节码</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/字节码/" style="font-size: 10px;">字节码</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+        
+  <div class="widget-wrap">
+    <h3 class="widget-title">About</h3>
+    <div class="widget">
+      邮箱：xxx@xxx.com<br />
+      微博：@xxxxx
+    </div>
+  </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 klevan<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
