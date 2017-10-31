@@ -230,7 +230,7 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>承接上文 <a href="http://sunshichuang.com/javabytecode/" target="_blank" rel="external">Java类文件结构解析（一）</a>，这里对照着字节码继续看一下字节码文件的具体结构。<br>从第一个16进制符往下看：</p>
+            <p>承接上文 <a href="http://sunshichuang.com/javabytecode/">Java类文件结构解析（一）</a>，这里对照着字节码继续看一下字节码文件的具体结构。<br>从第一个16进制符往下看：</p>
 <p>cafebabe 0000 0034 ，十进制大小为52 。表示魔数，指的是该class文件可以被java加载的版本号。  </p>
 <p>0017 :表示这个类的常量池大小为23，那么常量池大小为22，之所以少一位，是因为0空出来特殊场景下表示不引用任何一个常量池项目。<br>常量池中主要存放两类常量：字面量跟符号引用。常量池中的每一项常量都是一个表。目前共有14种不同类型的表结构。且这14种表结构的首位都是一个u1类型的标志位，代表当前这个常量属于哪种常量类型。这14种常量的意思列表如下:<br><a id="more"></a></p>
 <table>
@@ -319,7 +319,7 @@
 <p>在上表中查看结构是CONSTANT_Methodref_info的结构可知，表中的第一项是u1类型的标志位tag，用于区分常量类型，第二项是u2类型的索引index,第三项同样是是u2类型的index，分表表示：</p>
 <pre><code>- 0006: 6,指向CONSTANT_Class_info,即常量池的第六个常量。
 - 0011: 17，常量池的第17个常量。
-</code></pre><p>在<a href="http://sunshichuang.com/javabytecode/" target="_blank" rel="external">Java类文件结构解析（一）</a>文章中，我们通过javap命令拿到了详细的常量池信息，对比之下，可以知道6指向的是常量#22，也就是java/lang/Object，同理17指向的是”<init>“:()V。同样的寻找方式，我们把下面的所有十六进制对应的常量池信息都列出来：</init></p>
+</code></pre><p>在<a href="http://sunshichuang.com/javabytecode/">Java类文件结构解析（一）</a>文章中，我们通过javap命令拿到了详细的常量池信息，对比之下，可以知道6指向的是常量#22，也就是java/lang/Object，同理17指向的是”<init>“:()V。同样的寻找方式，我们把下面的所有十六进制对应的常量池信息都列出来：</init></p>
 <ul>
 <li><p>二:08:8,查表，字符串类型的字面量，CONSTANT_String_info</p>
 <p> 0012 ：18，指向字符串字面量的引用</p>
@@ -413,7 +413,7 @@
 
 </div>
 
-    <a data-url="http://sunshichuang.com/javabytecode2/" data-id="cj9fx6cai0002kzeyn10lpw7d" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://sunshichuang.com/javabytecode2/" data-id="cj9fxcm4a00020peynufjzu41" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

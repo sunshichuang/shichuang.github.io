@@ -223,7 +223,7 @@
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><p>承接上文 <a href="http://sunshichuang.com/javabytecode/" target="_blank" rel="external">Java类文件结构解析（一）</a>，这里对照着字节码继续看一下字节码文件的具体结构。<br>从第一个16进制符往下看：</p>
+            <p><p>承接上文 <a href="http://sunshichuang.com/javabytecode/">Java类文件结构解析（一）</a>，这里对照着字节码继续看一下字节码文件的具体结构。<br>从第一个16进制符往下看：</p>
 <p>cafebabe 0000 0034 ，十进制大小为52 。表示魔数，指的是该class文件可以被java加载的版本号。  </p>
 <p>0017 :表示这个类的常量池大小为23，那么常量池大小为22，之所以少一位，是因为0空出来特殊场景下表示不引用任何一个常量池项目。<br>常量池中主要存放两类常量：字面量跟符号引用。常量池中的每一项常量都是一个表。目前共有14种不同类型的表结构。且这14种表结构的首位都是一个u1类型的标志位，代表当前这个常量属于哪种常量类型。这14种常量的意思列表如下:<br></p>
             <p class="article-more-link">
@@ -238,7 +238,7 @@
 
 </div>
 
-    <a data-url="http://sunshichuang.com/javabytecode2/" data-id="cj9fx6cai0002kzeyn10lpw7d" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://sunshichuang.com/javabytecode2/" data-id="cj9fxcm4a00020peynufjzu41" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -371,7 +371,7 @@
 
 </div>
 
-    <a data-url="http://sunshichuang.com/javabytecode/" data-id="cj9fx6ca90000kzey2xf2cbsd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://sunshichuang.com/javabytecode/" data-id="cj9fxcm4200000peyo87p529q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
