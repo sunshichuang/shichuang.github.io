@@ -14,7 +14,7 @@
 <meta property="og:description" content="承接上文 Java类文件结构解析（一），这里对照着字节码继续看一下字节码文件的具体结构。从第一个16进制符往下看： cafebabe 0000 0034 ，十进制大小为52 。表示魔数，指的是该class文件可以被java加载的版本号。   0017 :表示这个类的常量池大小为23，那么常量池大小为22，之所以少一位，是因为0空出来特殊场景下表示不引用任何一个常量池项目。常量池中主要存放两类常量：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/javalogo.png">
-<meta property="og:updated_time" content="2017-10-31T17:51:16.000Z">
+<meta property="og:updated_time" content="2017-10-31T17:58:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java类文件结构解析（二）">
 <meta name="twitter:description" content="承接上文 Java类文件结构解析（一），这里对照着字节码继续看一下字节码文件的具体结构。从第一个16进制符往下看： cafebabe 0000 0034 ，十进制大小为52 。表示魔数，指的是该class文件可以被java加载的版本号。   0017 :表示这个类的常量池大小为23，那么常量池大小为22，之所以少一位，是因为0空出来特殊场景下表示不引用任何一个常量池项目。常量池中主要存放两类常量：">
@@ -232,7 +232,7 @@
             
             <p>承接上文 <a href="http://sunshichuang.com/javabytecode/" target="_blank" rel="external">Java类文件结构解析（一）</a>，这里对照着字节码继续看一下字节码文件的具体结构。<br>从第一个16进制符往下看：</p>
 <p>cafebabe 0000 0034 ，十进制大小为52 。表示魔数，指的是该class文件可以被java加载的版本号。  </p>
-<p>0017 :表示这个类的常量池大小为23，那么常量池大小为22，之所以少一位，是因为0空出来特殊场景下表示不引用任何一个常量池项目。<br>常量池中主要存放两类常量：字面量跟符号引用。常量池中的每一项常量都是一个表。目前共有14种不同类型的表结构。且这14种表结构的首位都是一个u1类型的标志位，代表当前这个常量属于哪种常量类型。这14种常量的意思列表如下:</p>
+<p>0017 :表示这个类的常量池大小为23，那么常量池大小为22，之所以少一位，是因为0空出来特殊场景下表示不引用任何一个常量池项目。<br>常量池中主要存放两类常量：字面量跟符号引用。常量池中的每一项常量都是一个表。目前共有14种不同类型的表结构。且这14种表结构的首位都是一个u1类型的标志位，代表当前这个常量属于哪种常量类型。这14种常量的意思列表如下:<br><a id="more"></a></p>
 <table>
 <thead>
 <tr>
