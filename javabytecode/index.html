@@ -6,7 +6,7 @@
     <title>Java类文件结构解析（一） | klevan blogs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="作为一个Java开发，每天编写的Java代码都是成百上千行，略去枯燥的业务代码不提，追寻代码从编译成class文件开始，虚拟机如何加载、解析这些代码的过程，一定要比单纯写业务代码有意思的多。 一、class文件的结构我们日常开发的过程大致是这样的，我要提供个某某功能的服务，所以，我们开始巴拉巴拉、、 123public class AaBaServiceImpl implements AaBaSe">
-<meta name="keywords" content="字节码">
+<meta name="keywords" content="虚拟机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java类文件结构解析（一）">
 <meta property="og:url" content="http://yoursite.com/javabytecode/index.html">
@@ -14,7 +14,7 @@
 <meta property="og:description" content="作为一个Java开发，每天编写的Java代码都是成百上千行，略去枯燥的业务代码不提，追寻代码从编译成class文件开始，虚拟机如何加载、解析这些代码的过程，一定要比单纯写业务代码有意思的多。 一、class文件的结构我们日常开发的过程大致是这样的，我要提供个某某功能的服务，所以，我们开始巴拉巴拉、、 123public class AaBaServiceImpl implements AaBaSe">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/javalogo.png">
-<meta property="og:updated_time" content="2017-10-26T11:44:39.000Z">
+<meta property="og:updated_time" content="2017-10-31T17:31:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java类文件结构解析（一）">
 <meta name="twitter:description" content="作为一个Java开发，每天编写的Java代码都是成百上千行，略去枯燥的业务代码不提，追寻代码从编译成class文件开始，虚拟机如何加载、解析这些代码的过程，一定要比单纯写业务代码有意思的多。 一、class文件的结构我们日常开发的过程大致是这样的，我要提供个某某功能的服务，所以，我们开始巴拉巴拉、、 123public class AaBaServiceImpl implements AaBaSe">
@@ -159,7 +159,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                1
+                2
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -219,7 +219,7 @@
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/字节码/">字节码</a>
+        <a class="tag-link" href="/tags/虚拟机/">虚拟机</a>
     </div>
 
                     </div>
@@ -288,7 +288,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/javabytecode/" data-id="cj98i3pz700006qeyosax67qi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/javabytecode/" data-id="cj9fsu6fp000003eyfxmnhq2o" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -361,6 +361,20 @@
     </div>
     
         
+<nav id="article-nav">
+    
+        <a href="/javabytecode2/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Java类文件结构解析（二）
+                
+            </div>
+        </a>
+    
+    
+</nav>
+
 
     
 </article>
@@ -379,6 +393,25 @@
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/javabytecode2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/javalogo.png)" alt="Java类文件结构解析（二）" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/javabytecode2/" class="title">Java类文件结构解析（二）</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:01:51.000Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -408,7 +441,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -417,7 +450,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -426,7 +459,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/字节码/">字节码</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟机/">虚拟机</a><span class="tag-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -435,7 +468,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/字节码/" style="font-size: 10px;">字节码</a>
+            <a href="/tags/虚拟机/" style="font-size: 10px;">虚拟机</a>
         </div>
     </div>
 

@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>klevan blogs</title>
+    <title>Java类文件结构解析（二） | klevan blogs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="klevan blogs">
-<meta property="og:url" content="http://yoursite.com/index.html">
+    <meta name="description" content="承接上文 Java类文件结构解析（一），这里对照着字节码继续看一下字节码文件的具体结构。从第一个16进制符往下看： cafebabe 0000 0034 ，十进制大小为52 。表示魔数，指的是该class文件可以被java加载的版本号。   0017 :表示这个类的常量池大小为23，那么常量池大小为22，之所以少一位，是因为0空出来特殊场景下表示不引用任何一个常量池项目。常量池中主要存放两类常量：">
+<meta name="keywords" content="虚拟机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java类文件结构解析（二）">
+<meta property="og:url" content="http://yoursite.com/javabytecode2/index.html">
 <meta property="og:site_name" content="klevan blogs">
+<meta property="og:description" content="承接上文 Java类文件结构解析（一），这里对照着字节码继续看一下字节码文件的具体结构。从第一个16进制符往下看： cafebabe 0000 0034 ，十进制大小为52 。表示魔数，指的是该class文件可以被java加载的版本号。   0017 :表示这个类的常量池大小为23，那么常量池大小为22，之所以少一位，是因为0空出来特殊场景下表示不引用任何一个常量池项目。常量池中主要存放两类常量：">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/javalogo.png">
+<meta property="og:updated_time" content="2017-10-31T17:51:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="klevan blogs">
+<meta name="twitter:title" content="Java类文件结构解析（二）">
+<meta name="twitter:description" content="承接上文 Java类文件结构解析（一），这里对照着字节码继续看一下字节码文件的具体结构。从第一个16进制符往下看： cafebabe 0000 0034 ，十进制大小为52 。表示魔数，指的是该class文件可以被java加载的版本号。   0017 :表示这个类的常量池大小为23，那么常量池大小为22，之所以少一位，是因为0空出来特殊场景下表示不引用任何一个常量池项目。常量池中主要存放两类常量：">
+<meta name="twitter:image" content="http://yoursite.com/images/javalogo.png">
     
 
     
@@ -180,16 +187,15 @@
 </aside>
 
             
-            <section id="main">
-    <article id="post-javabytecode2" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-javabytecode2" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
             <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="article-title" href="/javabytecode2/">Java类文件结构解析（二）</a>
+        <h1 class="article-title" itemprop="name">
+            Java类文件结构解析（二）
         </h1>
     
 
@@ -479,141 +485,24 @@
         </footer>
     </div>
     
-</article>
-
-
-
-    <article id="post-javabytecode" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
         
-        
-            <header class="article-header">
-                
+<nav id="article-nav">
     
-        <h1 itemprop="name">
-            <a class="article-title" href="/javabytecode/">Java类文件结构解析（一）</a>
-        </h1>
     
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/javabytecode/">
-            <time datetime="2017-10-25T09:01:51.000Z" itemprop="datePublished">2017-10-25</time>
+        <a href="/javabytecode/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Java类文件结构解析（一）</div>
         </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Java/">Java</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/虚拟机/">虚拟机</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p><img src="/images/javalogo.png" alt=""><br>作为一个Java开发，每天编写的Java代码都是成百上千行，略去枯燥的业务代码不提，追寻代码从编译成class文件开始，虚拟机如何加载、解析这些代码的过程，一定要比单纯写业务代码有意思的多。</p>
-<h1 id="一、class文件的结构"><a href="#一、class文件的结构" class="headerlink" title="一、class文件的结构"></a>一、class文件的结构</h1><p>我们日常开发的过程大致是这样的，我要提供个某某功能的服务，所以，我们开始巴拉巴拉、、</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AaBaServiceImpl</span> <span class="keyword">implements</span> <span class="title">AaBaService</span> </span>&#123;</div><div class="line">   <span class="comment">//巴拉巴拉一堆代码：服务依赖、变量定义、方法定义、常量、日志 等等等</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-            <p class="article-more-link">
-                <a href="/javabytecode/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/javabytecode/" data-id="cj9fsu6fp000003eyfxmnhq2o" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
     
+</nav>
 
-        </footer>
-    </div>
+
     
 </article>
 
+
+    
+    
 
 </section>
             
