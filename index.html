@@ -7,15 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta property="og:type" content="website">
 <meta property="og:title" content="klevan blogs">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://sunshichuang.com/index.html">
 <meta property="og:site_name" content="klevan blogs">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="klevan blogs">
     
 
-    
-        <link rel="alternate" href="/" title="klevan blogs" type="application/atom+xml" />
     
 
     
@@ -147,14 +145,14 @@
     <div class="inner profile-inner">
         <div class="base-info profile-block">
             <img id="avatar" src="/css/images/avatar.png" />
-            <h2 id="name">klevan</h2>
+            <h2 id="name">孙士闯</h2>
             <h3 id="title">A Developer &amp; Designer</h3>
             <span id="location"><i class="fa fa-map-marker"></i>hangzhou, China</span>
             <a id="follow" target="_blank" href="https://github.com/klevantrain/">关注我</a>
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                1
+                2
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -169,32 +167,8 @@
                     
                     
                     <td>
-                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
+                        <a href="http://github.com/klevantrain" target="_blank" title="github" class=tooltip>
                             <i class="fa fa-github"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="/" target="_blank" title="twitter" class=tooltip>
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="/" target="_blank" title="facebook" class=tooltip>
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="/" target="_blank" title="dribbble" class=tooltip>
-                            <i class="fa fa-dribbble"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="/" target="_blank" title="rss" class=tooltip>
-                            <i class="fa fa-rss"></i>
                         </a>
                     </td>
                     
@@ -207,6 +181,139 @@
 
             
             <section id="main">
+    <article id="post-javabytecode2" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/javabytecode2/">Java类文件结构解析（二）</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/javabytecode2/">
+            <time datetime="2017-10-31T09:01:51.000Z" itemprop="datePublished">2017-10-31</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Java/">Java</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/虚拟机/">虚拟机</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>承接上文 <a href="http://sunshichuang.com/javabytecode/">Java类文件结构解析（一）</a>，这里对照着字节码继续看一下字节码文件的具体结构。<br>从第一个16进制符往下看：</p>
+<p>cafebabe 0000 0034 ，十进制大小为52 。表示魔数，指的是该class文件可以被java加载的版本号。  </p>
+<p>0017 :表示这个类的常量池大小为23，那么常量池大小为22，之所以少一位，是因为0空出来特殊场景下表示不引用任何一个常量池项目。<br>常量池中主要存放两类常量：字面量跟符号引用。常量池中的每一项常量都是一个表。目前共有14种不同类型的表结构。且这14种表结构的首位都是一个u1类型的标志位，代表当前这个常量属于哪种常量类型。这14种常量的意思列表如下:<br></p>
+            <p class="article-more-link">
+                <a href="/javabytecode2/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://sunshichuang.com/javabytecode2/" data-id="cj9fxcm4a00020peynufjzu41" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-javabytecode" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -239,7 +346,7 @@
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/字节码/">字节码</a>
+        <a class="tag-link" href="/tags/虚拟机/">虚拟机</a>
     </div>
 
                     </div>
@@ -264,7 +371,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/javabytecode/" data-id="cj98eoi6o0000wteydmujseqj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://sunshichuang.com/javabytecode/" data-id="cj9fxcm4200000peyo87p529q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -353,6 +460,25 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/javabytecode2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/javalogo.png)" alt="Java类文件结构解析（二）" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/javabytecode2/" class="title">Java类文件结构解析（二）</a></p>
+                            <p class="item-date"><time datetime="2017-10-31T09:01:51.000Z" itemprop="datePublished">2017-10-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/javabytecode/" class="thumbnail">
     
     
@@ -378,7 +504,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -387,7 +513,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -396,7 +522,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/字节码/">字节码</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟机/">虚拟机</a><span class="tag-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -405,7 +531,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/字节码/" style="font-size: 10px;">字节码</a>
+            <a href="/tags/虚拟机/" style="font-size: 10px;">虚拟机</a>
         </div>
     </div>
 
@@ -430,8 +556,8 @@
   <div class="widget-wrap">
     <h3 class="widget-title">About</h3>
     <div class="widget">
-      邮箱：xxx@xxx.com<br />
-      微博：@xxxxx
+      邮箱：klevan@163.com<br />
+      <!-- 微博：@xxxxx -->
     </div>
   </div>
 
