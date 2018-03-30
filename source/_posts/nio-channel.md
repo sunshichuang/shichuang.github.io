@@ -29,19 +29,18 @@ Java NIO Channels 跟流很相似，但是跟流又有着如下的不同点：
 
 ### Basic Channel Example
 Here is a basic example that uses a FileChannel to read some data into a Buffer:
-
+下面是一个用FileChannel读取文件到缓冲区的代码实例：
 ```
+//开启一个读的通道
 RandomAccessFile aFile = new RandomAccessFile("data/nio-data.txt", "rw");
     FileChannel inChannel = aFile.getChannel();
-
+    //分配48byte的缓冲区用来存放数据
     ByteBuffer buf = ByteBuffer.allocate(48);
-
     int bytesRead = inChannel.read(buf);
     while (bytesRead != -1) {
-
       System.out.println("Read " + bytesRead);
+      //这行代码一定要有，否则永远读不到数据，原因看下面解释
       buf.flip();
-
       while(buf.hasRemaining()){
           System.out.print((char) buf.get());
       }
@@ -51,4 +50,5 @@ RandomAccessFile aFile = new RandomAccessFile("data/nio-data.txt", "rw");
     }
     aFile.close();
 
-    ```
+```
+注意buf.flip()这行代码，flip调换这个buffer的当前位置，并且设置当前位置是0。意思就是：将缓存字节数组的指针设置为数组的开始序列即数组下标0。这样就可以从buffer开头，对该buffer进行遍历（读取）了。
