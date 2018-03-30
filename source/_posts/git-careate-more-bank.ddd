@@ -1,0 +1,20 @@
+---
+title: git-careate-more-bank
+date: 2017-11-19 11:47:20
+categories: Git
+tags: 工具集
+thumbnail:
+---
+当公司电脑与私人电脑合用，在家想提交一些代码到私人博客或者github上，在公司需要提交代码到公司的专用仓库时，一机多git用户就很有必要了。具体设置步骤：
+
+##1.创建个人的SSH key
+```
+cd ~/.ssh
+
+ssh-keygen -t rsa -C "test@163.com" #这里的邮箱要换成自己账号的邮箱地址！
+##然后设置存储id_rsa的名称，这里名称随意
+Enter file in which to save the key (/Users/sunshichuang/.ssh/id_rsa):test
+```
+
+##2.把创建好的秘钥加到SSH agent中
+ssh-add ~/.ssh/test 

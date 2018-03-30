@@ -2,7 +2,7 @@
 title: Java类文件结构解析（一）
 date: 2017-10-25 17:01:51
 categories: Java
-tags: 字节码
+tags: 虚拟机
 thumbnail: /images/javalogo.png
 ---
 
