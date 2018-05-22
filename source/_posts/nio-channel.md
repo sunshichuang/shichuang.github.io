@@ -1,7 +1,7 @@
 ---
-title: NIO系列3:JAVA NIO Channels
+title: NIO系列3-JAVA NIO Channels
 date: 2018-3-31 13:01:51
-categories: Java
+categories: NIO
 tags: IO
 thumbnail: /images/IO-TU.jpg
 ---
@@ -27,8 +27,7 @@ Java NIO Channels 跟流很相似，但是跟流又有着如下的不同点：
     SocketChannel可以通过TCP协议从网络中读写数据。
     ServerSocketChannel允许我们监听一个TCP的连接，类似于已web服务器做的事情。对于每个新建的TCP连接，，一个SocketChannel实例都会被创建。
 
-### Basic Channel Example
-Here is a basic example that uses a FileChannel to read some data into a Buffer:
+### 基础Channel示例
 下面是一个用FileChannel读取文件到缓冲区的代码实例：
 ```
 //开启一个读的通道

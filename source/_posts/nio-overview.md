@@ -1,11 +1,11 @@
 ---
-title: NIO系列2:JAVA NIO 概览
+title: NIO系列2-JAVA NIO 概览
 date: 2018-3-30 15:01:51
-categories: Java
+categories: NIO
 tags: IO
 thumbnail: /images/IO-TU.jpg
 ---
-![](/images/IO-TU.jpg)
+<!-- ![](/images/IO-TU.jpg) -->
 
 Java NIO 主要包含如下几个核心构成:
 
